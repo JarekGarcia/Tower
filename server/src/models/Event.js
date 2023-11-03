@@ -4,8 +4,8 @@ export const EventSchema = new Schema(
     {
         creatorId: { type: Schema.Types.ObjectId, required: true },
         name: { type: String, required: true, maxLength: 50 },
-        description: { type: String, required: true, maxLength: 500 },
-        coverImg: { type: String, required: false, maxLength: 500 },
+        description: { type: String, required: true, maxLength: 1000 },
+        coverImg: { type: String, required: true, maxLength: 500 },
         location: { type: String, required: true, maxLength: 50 },
         capacity: { type: Number, required: true, },
         startDate: { type: Date, required: true, },
@@ -25,6 +25,13 @@ EventSchema.virtual('creator', {
     ref: 'Account',
     foreignField: '_id',
     justOne: true,
+
+})
+EventSchema.virtual('ticketCount', {
+    localField: '_id',
+    ref: 'Ticket',
+    foreignField: 'eventId',
+    count: true
 
 })
 

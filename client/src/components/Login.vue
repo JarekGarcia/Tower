@@ -13,6 +13,9 @@
         </div>
         <div class="dropdown-menu dropdown-menu-lg-end dropdown-menu-start p-0" aria-labelledby="authDropdown">
           <div class="list-group">
+            <div type="button" role="button" data-bs-toggle="modal" data-bs-target="#createEventModal" class="list-group-item dropdown-item list-group-item-action fw-bold">
+              Create Event
+            </div>
             <router-link :to="{ name: 'Account' }">
               <div class="list-group-item dropdown-item list-group-item-action">
                 Manage Account

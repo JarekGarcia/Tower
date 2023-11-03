@@ -7,11 +7,11 @@ export class Event{
         this.coverImg = data.coverImg
         this.location = data.location
         this.capacity = data.capacity
-        this.startDate = data.startDate
+        this.startDate = new Date(data.startDate) || this.startDate
         this.isCanceled = data.isCanceled
         this.type = data.type
-        this.createdAt = new Date(this.createdAt).toLocaleDateString()
-        this.updatedAt = new Date(this.updatedAt)
+        this.createdAt = new Date(this.createdAt)
+        this.updatedAt = new Date(this.createdAt)
         this.creator = data.creator
     }
 }

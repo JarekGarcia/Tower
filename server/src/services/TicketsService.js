@@ -11,11 +11,32 @@ class TicketsService {
         }
 
         const tickets = await dbContext.Tickets.create(ticketData)
-        await tickets.populate('profile', 'name picture')
+        await tickets.populate('profile')
         await tickets.populate('event')
         return tickets
     }
 
+
+    async refundTicket(ticketId, userId) {
+        const ticket = await dbContext.Tickets.findById(ticketId)
+        await ticket.delete()
+        return "Ticket Refunded!"
+    }
+
+    async getMyEventTickets(userId) {
+        const tickets = await dbContext.Tickets.find({ accountId: userId })
+            .populate({
+                path: 'event',
+                populate: {
+                    path: 'ticketCount'
+                }
+            })
+        return tickets
+    }
+    async getTicketsByEventId(eventId) {
+        const tickets = await dbContext.Tickets.find({ eventId: eventId }).populate('profile', 'name picture')
+        return tickets
+    }
 }
 
 export const ticketsService = new TicketsService()
