@@ -1,7 +1,7 @@
 <template>
-    <div class="container-fluid">
+    <div v-if="events" class="container-fluid">
         <section class="row">
-            <div v-if="events" class="col-12">
+            <div class="col-12">
                 <div class="row">
                     <div class="col-12 col-md-4 p-1">
     <img :src="events.coverImg" :alt="events.name" class="img-fluid rounded">

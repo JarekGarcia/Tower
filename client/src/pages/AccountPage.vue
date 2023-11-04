@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid">
+  <div v-if="tickets" class="container-fluid">
     <section class="row">
       <div class="col-12">
         <div class="about text-center text-white">
@@ -10,14 +10,13 @@
       <div class="col-12">
         <p class="fw-bold fs-1 text-white">My Tickets:</p>
       </div>
-      <div class="col-12 col-md-3" v-for="ticket in tickets" :key="tickets.id">
+      <div class="col-12 col-md-3" v-for="ticket in tickets" :key="ticket.id">
         <img :src="ticket.event.coverImg" :alt="ticket.event.name" class="img-fluid mt-5 rounded-top">
         <div class="bg-secondary p-3 rounded-bottom">
             <p v-if="ticket.event.isCanceled" class="text-danger fw-bold fs-5">Event Canceled</p>
             <p v-if="ticket.event.capacity == 0" class="text-danger fw-bold fs-5">Event Sold Out!</p>
             <p class="fw-bold">{{ ticket.event.name }}</p>
             <p><span class="fw-bold">Location:</span> {{ ticket.event.location }}</p>
-            <p>{{ ticket.event.capacity }}</p>
             <button @click="deleteTicket(ticket.id)" class="btn btn-danger">Refund Ticket</button>
         </div>
       </div>
