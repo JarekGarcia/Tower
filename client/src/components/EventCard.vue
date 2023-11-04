@@ -4,6 +4,7 @@
         <img :src="eventProp.coverImg" :alt="eventProp.name" class="img-fluid mt-5 rounded-top">
         <div class="bg-secondary p-3 rounded-bottom">
             <p v-if="eventProp.isCanceled" class="text-danger fw-bold fs-5">Event Canceled</p>
+            <p v-if="eventProp.capacity == 0" class="text-danger fw-bold fs-5">Event Sold Out!</p>
             <p class="fw-bold">{{ eventProp.name }}</p>
             <p><span class="fw-bold">Location:</span> {{ eventProp.location }}</p>
             <p><span class="fw-bold">Start Date:</span> {{ eventProp.startDate.toLocaleDateString() }}</p>

@@ -11,14 +11,18 @@ class EventsService {
     }
     async editEvent(eventId, userId, eventData) {
         const eventToBeUpdated = await this.getEventById(eventId)
+        if (eventToBeUpdated.isCanceled == true) {
+            throw new BadRequest("cannot edit canceled events")
+        }
 
         if (eventToBeUpdated.creatorId != userId) {
             throw new Forbidden('not your event to edit!')
         }
 
-        eventToBeUpdated.name = eventData.name || eventToBeUpdated.name
-        eventToBeUpdated.description = eventData.description || eventToBeUpdated.description
-        eventToBeUpdated.isCanceled = eventData.isCanceled != undefined ? eventData.isCanceled : eventToBeUpdated.isCanceled
+
+        eventToBeUpdated.name = eventData.name
+        eventToBeUpdated.description = eventData.description
+        // eventToBeUpdated.isCanceled = eventData.isCanceled != undefined ? eventData.isCanceled : eventToBeUpdated.isCanceled
 
         await eventToBeUpdated.save()
 
