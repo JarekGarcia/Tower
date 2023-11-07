@@ -9,7 +9,7 @@ class EventsService{
         const res = await api.get('api/events')
         // logger.log('events:',res.data)
         AppState.events = res.data.map((eventPojo) => new Event(eventPojo))
-        logger.log("events in appstate:", AppState.events)
+        logger.log("events in appstate:", AppState.events) 
     }
 
     async getEventById(eventId){

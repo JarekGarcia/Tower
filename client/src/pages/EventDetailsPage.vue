@@ -1,10 +1,10 @@
-<template>
+<template v-if="events">
     <div v-if="events" class="container-fluid">
         <section class="row">
             <div class="col-12">
                 <div class="row">
                     <div class="col-12 col-md-4 p-1">
-    <img :src="events.coverImg" :alt="events.name" class="img-fluid rounded">
+    <img v-if="events" :src="events.coverImg" :alt="events.name" class="img-fluid rounded">
                     </div>
                     <div class="col-12 col-md-8">
                         <div class="row">
